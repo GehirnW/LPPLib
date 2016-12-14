@@ -9,20 +9,20 @@ using namespace QuantLib;
 class LPPLHelper
 {
 public:
-	LPPLHelper(std::string strFilePath, Integer iColTimeIndex = 0):
+	LPPLHelper(std::string strFilePath, Integer iColDataIndex, Integer iColTimeIndex = 0):
 	  strFilePath_(strFilePath), iColTimeIndex_(iColTimeIndex)
 	  {
 		  QL_REQUIRE(iColTimeIndex >= 0, "LPPLHelper: Date time col index must be a non-negative integer");
 	  }
 
-	  void readDataFromTxt();
-	  std::vector<Real> getDataVector(Integer iCol){return dataMatrix_[iCol];}
+	  void loadData();
+	  std::vector<Real> getDataVector(Integer iCol){return data_;}
 	  std::vector<std::string> getDataTimeVector(){return datetime_;}
 
 private:
 	std::string strFilePath_;
-	std::vector<std::vector<Real> > dataMatrix_;//! txt data(in cols) => vector<vector> data( in rows)
+	std::vector<Real> data_;
 	std::vector<std::string > datetime_;  
-	Integer iColTimeIndex_; //! col index for date time
-	Integer iNbDataVector_; //! nb of vectors stored in dataMatrix_
+	Integer iColTimeIndex_; //! col index(in txt file) for date time
+	Integer iColDataIndex_; //! col index(in txt file) for data
 };
