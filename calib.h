@@ -10,13 +10,13 @@ class LPPLHelper
 {
 public:
 	LPPLHelper(std::string strFilePath, Integer iColDataIndex, Integer iColTimeIndex = 0):
-	  strFilePath_(strFilePath), iColTimeIndex_(iColTimeIndex)
+	  strFilePath_(strFilePath), iColTimeIndex_(iColTimeIndex), iColDataIndex_(iColDataIndex)
 	  {
 		  QL_REQUIRE(iColTimeIndex >= 0, "LPPLHelper: Date time col index must be a non-negative integer");
 	  }
 
 	  void loadData();
-	  std::vector<Real> getDataVector(Integer iCol){return data_;}
+	  std::vector<Real> getDataVector(){return data_;}
 	  std::vector<std::string> getDataTimeVector(){return datetime_;}
 
 private:
